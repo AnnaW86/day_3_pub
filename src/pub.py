@@ -1,8 +1,9 @@
 class Pub:
-    def __init__(self, name, till, drinks):
+    def __init__(self, name, till, drinks, employees):
         self.name = name
         self.till = till
         self.drinks = drinks
+        self.employees = employees
     
     def sell_drink(self, customer, drink):
         if customer.age >= 18 and customer.drunkenness <= 8:
@@ -22,3 +23,7 @@ class Pub:
         for drink in drinks:
             total_value += drink.price * drinks[drink]
         return total_value
+    
+    def pay_employees(self, employees, hours_worked):
+        for employee in employees:
+            employee.wallet += hours_worked * employee.wage

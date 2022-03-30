@@ -3,6 +3,7 @@ import unittest
 from src.pub import Pub
 from src.customer import Customer
 from src.drink import Drink
+from src.employee import Employee
 
 class TestPub(unittest.TestCase):
     def setUp(self):
@@ -20,7 +21,10 @@ class TestPub(unittest.TestCase):
             self.drink3: 40,
             self.drink4: 35,
             self.drink5: 60}
-        self.pub1 = Pub("The Pub", 100, self.drinks)
+        self.employee1 = Employee("Jane", 60, 22, 6)
+        self.employee2 = Employee("Joe", 14, 24, 6)
+        self.employees = [self.employee1, self.employee2]
+        self.pub1 = Pub("The Pub", 100, self.drinks, self.employees)
 
     def test_pub_has_name(self):
         self.assertEqual("The Pub", self.pub1.name)
@@ -59,3 +63,8 @@ class TestPub(unittest.TestCase):
     def test_can_check_stock_value(self):
         result = self.pub1.check_total_stock_value(self.drinks)
         self.assertEqual(1015, result)
+    
+    def test_can_pay_employees(self):
+        self.pub1.pay_employees(self.employees, 8)
+        self.assertEqual(108, self.employee1.wallet)
+        self.assertEqual(62, self.employee2.wallet)
