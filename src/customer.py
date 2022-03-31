@@ -17,3 +17,9 @@ class Customer(Person):
         if self.wallet >= food.price:
             self.buy_item(food)
             self.drunkenness -= food.rejuvination_level
+    
+    def not_old_enough(self):
+        return self.age < 18
+    
+    def too_drunk(self):
+        return self.drunkenness >= 8

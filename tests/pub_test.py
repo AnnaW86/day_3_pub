@@ -57,7 +57,7 @@ class TestPub(unittest.TestCase):
         self.assertEqual("Go home, you're drunk", result)
     
     def test_can_check_stock_of_drink(self):
-        result = self.pub1.check_stock(self.drinks, self.drink1)
+        result = self.pub1.check_stock(self.drink1)
         self.assertEqual(50, result)
     
     def test_can_check_stock_value(self):
