@@ -34,3 +34,9 @@ class Pub:
     def pay_employees(self, employees, hours_worked):
         for employee in employees:
             employee.wallet += hours_worked * employee.wage
+
+    def add_drink(self, drink, quantity = 1):
+        if drink in self.drinks:
+            self.drinks[drink] += quantity
+        else:
+            self.drinks[drink] = quantity

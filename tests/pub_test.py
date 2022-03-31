@@ -68,3 +68,12 @@ class TestPub(unittest.TestCase):
         self.pub1.pay_employees(self.employees, 8)
         self.assertEqual(108, self.employee1.wallet)
         self.assertEqual(62, self.employee2.wallet)
+    
+    def test_can_restock_drink(self):
+        self.pub1.add_drink(self.drink1)
+        self.assertEqual(51, self.drinks[self.drink1])
+    
+    def test_can_add_new_drink(self):
+        drink6 = Drink("Coke", 1.8, 0)
+        self.pub1.add_drink(drink6, 50)
+        self.assertEqual(50, self.drinks[drink6])
