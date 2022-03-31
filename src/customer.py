@@ -5,9 +5,15 @@ class Customer(Person):
         super().__init__(name, wallet, age)
         self.drunkenness = drunkenness
 
+    def buy_item(self, item):
+        self.wallet -= item.price
+
     def buy_drink(self, drink):
-        self.wallet -= drink.price
+        if self.wallet >= drink.price:
+            self.buy_item(drink)
+            self.drunkenness += drink.alcohol_level
 
     def buy_food(self, food):
-        self.wallet -= food.price
-        self.drunkenness -= food.rejuvination_level
+        if self.wallet >= food.price:
+            self.buy_item(food)
+            self.drunkenness -= food.rejuvination_level

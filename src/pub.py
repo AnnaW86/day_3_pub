@@ -5,11 +5,18 @@ class Pub:
         self.drinks = drinks
         self.employees = employees
     
+    def add_to_till(self, amount):
+        self.till += amount
+    
+    def add_to_drunkenness(self, customer, drink):
+        customer.drunkenness += drink.alcohol_level
+
     def sell_drink(self, customer, drink):
-        if customer.age >= 18 and customer.drunkenness <= 8:
-            self.till += drink.price
+        if self.drinks[drink] == 0:
+            return "Sorry, we're all out of that"
+        if customer.age >= 18 and customer.drunkenness <= 8 and self.drinks[drink]:
+            self.add_to_till(drink.price)
             customer.buy_drink(drink)
-            customer.drunkenness += drink.alcohol_level
         if customer.age < 18:
             return "Go home, kid!"
         if customer.drunkenness > 8:
